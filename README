@@ -1,0 +1,62 @@
+This contains the models, functions and resulting data as used in:
+
+
+It is based on code used for Yamazaki T, Tanaka S (2005) Neural modeling of an internal clock. Neural Comput 17:1032-58
+
+
+1. Recompile if necessary. In ./cells/ifun execute:
+python setup.py build_ext --inplace
+python setup2.py build_ext --inplace
+python setup2b.py build_ext --inplace
+python setup2re.py build_ext --inplace
+
+2. To plot the figures from the saved data files execute the commands below.
+Figures will be saved to: ./figs/Pub
+
+# FIGURE 2
+python Plots_Closedloop.py -o fig1 -nompi
+
+# FIGURE 3:
+python Plots_Closedloop.py -o fig2 -nompi
+
+# FIGURE 4:
+python Plots_Closedloop.py -o fig3 -nompi
+
+# FIGURE 5:
+python Plots_Closedloop.py -o fig3b -nompi
+
+# FIGURE 6:
+python Plots_Closedloop.py -o fig4l -nompi
+
+# FIGURE 7:
+python Plots_Closedloop.py -o fig51l -nompi
+
+# FIGURE 8:
+python Plots_Closedloop.py -o fig52l -nompi
+
+# FIGURE 9:
+python Plots_Closedloop.py -o figRe6 -nompi
+
+
+3. Run the actual simulations:
+Data will be saved to ./data
+Intermediate figure will be saved to ./figs/dump and ./figs/Pub
+
+- To run a single instance of the one-population network execute:
+python Plots_Closedloop.py -o ifun -nompi
+
+- To generate a single trace for e.g. Fig 6 it is better to use a cluster. Here is an example to run it on a cluster using Sun Grid Engine:
+qsub -v J=Plots_Closedloop.py,O=fig4lruntest -pe ompigige 64 -l rmem=32G -l mem=32G PBSinsigneo.sh
+
+- Run a trace with recurrent filter (Fig 9):
+qsub -v J=Plots_Closedloop.py,O=figRe6runtest -pe ompigige 64 -l rmem=32G -l mem=32G PBSinsigneo.sh
+
+
+
+
+** Terms of use:
+
+This code, "ClosedLoopRoessertEtAl", is a derivative of "internalclock" by Takeru Honda and Tadashi Yamazaki 
+used under CC-BY (http://creativecommons.org/licenses/by/3.0/). 
+The code of "internalclock" was downloaded from https://senselab.med.yale.edu/ModelDB/ShowModel.cshtml?model=115966
+"ClosedLoopRoessertEtAl" is licensed under CC BY by Christian Rössert (christian.a [4t] roessert.de).
