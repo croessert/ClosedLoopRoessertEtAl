@@ -331,13 +331,15 @@ if opt == "fig52l":
     runs = 10
 
 
-
 # FIGURE 9
-
+# NOTE: The first line with "_runre1_" runs the model with teacher forcing only!
+#       This is needed to get the proper weights for the Lyapunov estimation!
+#       When running the model form scratch uncomment these lines in "figRe6"
+ 
 if opt == "figRe6runtest":
     do_vec = np.array([
+                       "randomnet_ifun2re_cnoise_grc_0N1000_1N100_0tau1v50_1tau1v1_amod0.1_alpha0.0001_fitlasso_1wv0.1_ihsigma0.1_lentrain10_refilt2_runre1_exprecx_norunly_vec0w_ax1_specx21_continue_usemean_",
                        "randomnet_ifun2re_cnoise_grc_0N1000_1N100_0tau1v50_1tau1v1_amod0.1_alpha0.0001_fitlasso_1wv0.1_ihsigma0.1_lentrain10_refilt2_runre2_lyline_vec0w_first_end_ax1_specx21_continue_usemean_",
-
                       ])
     #data_dir = "./publish/closedloop/data/"
     #export_m = "./export"
@@ -981,68 +983,6 @@ if myid == 0:
         linewidth = 1.5
 
 
-    elif "fig6" in opt:
-
-        fig_size =  [4.86,5.0] # 1.5-Column 6.83
-
-        params = {'backend': 'ps',
-          'axes.labelsize': 8,
-          'axes.linewidth' : 0.5,
-          'title.fontsize': 8,
-          'text.fontsize': 10,
-          'font.size':10,
-          'axes.titlesize':8,
-          'legend.fontsize': 8,
-          'xtick.labelsize': 8,
-          'ytick.labelsize': 8,
-          'legend.borderpad': 0.2,
-          'legend.linewidth': 0.1,
-          'legend.loc': 'best',
-          'legend.ncol': 4,
-          'figure.figsize': fig_size}
-        rcParams.update(params)
-
-        fig1 = plt.figure('vec')
-
-        gs1 = matplotlib.gridspec.GridSpec(2,1,
-           width_ratios=[1],
-           height_ratios=[1,0.75],
-           )
-
-        gs1.update(bottom=0.08, top=0.71, left=0.13, right=0.45, wspace=0.15, hspace=0.25)
-
-        ax1 = plt.subplot(gs1[0,0])
-        ax1b = plt.subplot(gs1[1,0])
-
-
-        gs2 = matplotlib.gridspec.GridSpec(2,1,
-           width_ratios=[1],
-           height_ratios=[1,1],
-           )
-
-        gs2.update(bottom=0.08, top=0.71, left=0.55, right=0.97, wspace=0.15, hspace=0.25)
-
-        ax3 = plt.subplot(gs2[0,0])
-        ax4 = plt.subplot(gs2[1,0])
-
-
-        font = font0.copy()
-        font.set_family('sans-serif')
-        font.set_weight('bold')
-
-        x1 = -0.09
-        y1 = 1.12
-        ax1.text(x1, y1, 'A1', transform=ax1.transAxes, fontsize=12, va='top', fontproperties=font)
-        ax1b.text(x1, y1+0.04, 'A2', transform=ax1b.transAxes, fontsize=12, va='top', fontproperties=font)
-
-        ax3.text(x1+0.01, y1, 'B', transform=ax3.transAxes, fontsize=12, va='top', fontproperties=font)
-        ax4.text(x1+0.01, y1, 'C', transform=ax4.transAxes, fontsize=12, va='top', fontproperties=font)
-
-        d_out = 10
-        d_down = 5
-        linewidth = 1.5
-
-
     elif "fig4" in opt:
 
         fig_size =  [4.86,6] # 1.5-Column 6.83
@@ -1111,79 +1051,6 @@ if myid == 0:
         ax4.text(x1, y1, 'D', transform=ax4.transAxes, fontsize=12, va='top', fontproperties=font)
         ax5.text(x1, y1, 'E', transform=ax5.transAxes, fontsize=12, va='top', fontproperties=font)
         #ax5b.text(x1, y1, 'E2', transform=ax5b.transAxes, fontsize=12, va='top', fontproperties=font)
-
-        d_out = 10
-        d_down = 5
-        linewidth = 1.5
-
-    elif "fig7" in opt:
-
-        fig_size =  [4.86,7] # 1.5-Column 6.83
-
-        params = {'backend': 'ps',
-          'axes.labelsize': 8,
-          'axes.linewidth' : 0.5,
-          'title.fontsize': 8,
-          'text.fontsize': 10,
-          'font.size':10,
-          'axes.titlesize':8,
-          'legend.fontsize': 8,
-          'xtick.labelsize': 8,
-          'ytick.labelsize': 8,
-          'legend.borderpad': 0.2,
-          'legend.linewidth': 0.1,
-          'legend.loc': 'best',
-          'legend.ncol': 4,
-          'figure.figsize': fig_size}
-        rcParams.update(params)
-
-        fig1 = plt.figure('vec')
-
-        gs1 = matplotlib.gridspec.GridSpec(1, 3,
-           width_ratios=[1,1,1],
-           height_ratios=[1]
-           )
-
-        gs1.update(bottom=0.66, top=0.80, left=0.1, right=0.97, wspace=0.2, hspace=0.2)
-
-        ax1 = plt.subplot(gs1[0,0])
-        ax2 = plt.subplot(gs1[0,1])
-        ax3 = plt.subplot(gs1[0,2])
-
-
-        gs2 = matplotlib.gridspec.GridSpec(2, 3,
-           width_ratios=[1,1,1],
-           height_ratios=[1,1]
-           )
-
-        gs2.update(bottom=0.05, top=0.39, left=0.1, right=0.97, wspace=0.2, hspace=0.5)
-
-        ax4 = plt.subplot(gs2[0,0])
-        ax5 = plt.subplot(gs2[0,1])
-        ax6 = plt.subplot(gs2[0,2])
-
-        ax7 = plt.subplot(gs2[1,0])
-        ax8 = plt.subplot(gs2[1,1])
-        ax9 = plt.subplot(gs2[1,2])
-
-
-        font = font0.copy()
-        font.set_family('sans-serif')
-        font.set_weight('bold')
-
-        x1 = -0.12
-        y1 = 1.15
-        ax1.text(x1, y1, 'A1', transform=ax1.transAxes, fontsize=12, va='top', fontproperties=font)
-        ax2.text(x1, y1, 'A2', transform=ax2.transAxes, fontsize=12, va='top', fontproperties=font)
-        ax3.text(x1, y1, 'A3', transform=ax3.transAxes, fontsize=12, va='top', fontproperties=font)
-
-        ax4.text(x1, y1, 'B1', transform=ax4.transAxes, fontsize=12, va='top', fontproperties=font)
-        ax5.text(x1, y1, 'B2', transform=ax5.transAxes, fontsize=12, va='top', fontproperties=font)
-        ax6.text(x1, y1, 'B3', transform=ax6.transAxes, fontsize=12, va='top', fontproperties=font)
-
-        ax7.text(x1, y1, 'C1', transform=ax7.transAxes, fontsize=12, va='top', fontproperties=font)
-        ax8.text(x1, y1, 'C2', transform=ax8.transAxes, fontsize=12, va='top', fontproperties=font)
-        ax9.text(x1, y1, 'C3', transform=ax9.transAxes, fontsize=12, va='top', fontproperties=font)
 
         d_out = 10
         d_down = 5
@@ -1314,179 +1181,6 @@ for d, do in enumerate(do_vec):
     readd_lyap = False
     if "_readdlyap_" in do:
         readd_lyap = True
-
-    if "_protolow_" in do:
-
-        cellimport = []
-        celltype = ["IfCell", "IfCell"]
-        cell_exe = ["cell = IfCell()", "cell = IfCell()"]
-
-        conntype=[{'type':'e2ex', 'src':0, 'tgt':1, 'w':0.02*nS, 'var':0.5, 'tau1':1*ms, 'tau2':50*ms, 'conv':100},
-                  {'type':'e2inh', 'src':1, 'tgt':0, 'w':0.1*nS, 'var':0.5, 'tau1':1*ms, 'tau2':50*ms, 'conv':4}
-                 ]
-
-        N = [4500, 27]
-        N = [1000, 40]
-
-        ihold = [50, 0]
-        ihold_sigma = [0.1, 0]
-
-        #fluct_s = [0.001,0.001]
-        #fluct_tau = 10*ms
-        factor_celltype = [[1,0.5,0.5],[1,0.5,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        prefix = prefix + "_protolow"
-
-
-    if "_inhib_" in do:
-
-        cellimport = []
-        celltype = ["IfCell", "IfCell"]
-        cell_exe = ["cell = IfCell()", "cell = IfCell()"]
-
-        conntype=[{'type':'e2inh', 'src':0, 'tgt':1, 'w':0.5*nS/100, 'var':0.5, 'tau1':1*ms, 'tau2':50*ms, 'conv':100}, # 0.5*nS/100 5e-06 1.36666666667e-05
-                  {'type':'e2inh', 'src':1, 'tgt':0, 'w':1*nS/4, 'var':0.5, 'tau1':1*ms, 'tau2':50*ms, 'conv':4} # 1*nS/4 0.00025 0.000508333333333
-                 ]
-
-        N = [1000, 27]
-
-        ihold = [50, 50]
-        ihold_sigma = [0.1, 0.1]
-        factor_celltype = [[1,0.5,0.5],[1,0.5,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        len_train = 3
-        len_test = 2
-
-        p0 = []
-        p0.append(conntype[0]['w'])
-        p0.append(conntype[1]['w'])
-
-        upper_bounds = [100*nS,100*nS]
-        lower_bounds = [0,0]
-
-        ranges = ( (0.1*nS/100, 2*nS/100), (0.1*nS/4, 3*nS/4) )
-
-        myranges = [ [0.001*nS,0.002*nS,0.003*nS,0.004*nS,0.005*nS,0.006*nS,0.007*nS,0.008*nS,0.009*nS,0.01*nS,
-                      0.011*nS,0.012*nS,0.013*nS,0.014*nS,0.015*nS,0.016*nS,0.017*nS,0.018*nS,0.019*nS,0.02*nS],
-                     [0.025*nS, 0.05*nS, 0.075*nS, 0.1*nS, 0.125*nS, 0.15*nS, 0.175*nS, 0.2*nS,
-                      0.225*nS, 0.25*nS, 0.275*nS, 0.3*nS, 0.325*nS, 0.35*nS, 0.375*nS, 0.4*nS,
-                      0.425*nS, 0.45*nS, 0.475*nS, 0.5*nS, 0.525*nS, 0.55*nS, 0.575*nS, 0.5*nS,
-                      0.525*nS, 0.55*nS, 0.575*nS, 0.6*nS, 0.625*nS, 0.65*nS, 0.675*nS, 0.7*nS,
-                      0.725*nS, 0.75*nS, 0.775*nS, 0.8*nS, 0.825*nS, 0.85*nS, 0.875*nS, 0.9*nS]
-                   ]
-
-        def residuals(p, *args):
-
-            params['conntype'][0]['w'] = p[0]
-            params['conntype'][1]['w'] = p[1]
-
-            if myid == 0: print "conntype[0]['w']=", p[0], " conntype[1]['w']=", p[1]
-
-            pca_var, pca_start, pca_max, mean_spike_freq, basis_error = randomnet(params)
-
-            save_results(pickle_prefix,p,basis_error, use_h5 = use_h5, data_dir=data_dir)
-
-            err = basis_error
-
-            barrier(use_mpi, use_pc)
-
-            return err
-
-        prefix = prefix + "_inhib"
-
-
-    if "_inhibstl_" in do:
-
-        cellimport = []
-        celltype = ["IfCell", "IfCell", "IfCell"]
-        cell_exe = ["cell = IfCell()", "cell = IfCell()", "cell = IfCell()"]
-
-        conntype=[{'type':'e2inh', 'src':0, 'tgt':1, 'w':0.5*nS/100, 'var':0.5, 'tau1':1*ms, 'tau2':50*ms, 'conv':100}, # 0.5*nS/100 5e-06 1.36666666667e-05
-                  {'type':'e2inh', 'src':1, 'tgt':0, 'w':1*nS/4, 'var':0.5, 'tau1':1*ms, 'tau2':50*ms, 'conv':4}, # 1*nS/4 0.00025 0.000508333333333
-                  {'type':'e2ex', 'src':0, 'tgt':2, 'w':0.5*nS, 'var':0.5, 'tau1':0*ms, 'tau2':5*ms, 'conv':10}
-                 ]
-
-        N = [1000, 27, 100]
-
-        ihold = [50, 50, 0]
-        ihold_sigma = [0.1, 0.1, 0]
-        factor_celltype = [[1,0.5,0.5],[1,0.5,0.5],0] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        len_train = 100
-        len_test = 20
-
-        amod = [1,1,0]
-        fluct_s = [0,0,0]
-
-        prefix = prefix + "_inhibstl"
-
-
-    if "_prototype_" in do:
-
-        cellimport = []
-        celltype = ["IfCell", "IfCell"]
-        cell_exe = ["cell = IfCell()", "cell = IfCell()"]
-
-        conntype=[{'type':'e2inh', 'src':1, 'tgt':0, 'w':0.5*nS, 'var':0.5, 'tau1':1*ms, 'tau2':50*ms, 'conv':4},
-                  {'type':'e2ex', 'src':0, 'tgt':1, 'w':0.01*nS, 'var':0.5, 'tau1':1*ms, 'tau2':50*ms, 'conv':100},
-                 ]
-
-        N = [4500, 27]
-        N = [1000, 40]
-
-        ihold = [50, 20]
-        ihold_sigma = [0.1, 0.1]
-
-        #tau=5*ms
-        #tau_inh=100*ms
-        #weight=0.2*nS
-        #weight_inh=0.4*nS
-
-        #fluct_s = [0.01,0.01]
-        #fluct_tau = 100*ms
-        factor_celltype = [[1,0.5,0.5],[1,0.5,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        prefix = prefix + "_prototype"
-
-
-    if "_timeconst_" in do:
-
-        cellimport = []
-        celltype = ["IfCell", "IfCell"]
-        cell_exe = ["cell = IfCell()", "cell = IfCell()"]
-
-        conntype=[{'type':'e2inh', 'src':1, 'tgt':0, 'w':0.04*nS, 'var':0, 'tau1':0*ms, 'tau2':100*ms, 'conv':10}
-                 ]
-
-        N = [1000, 1000]
-
-        give_freq = True
-
-        amod = [1,1]
-
-        ihold = [40, 40]
-        ihold_sigma = [0.1, 0.1]
-        fluct_s = [0,0]
-
-        dumpsave = 1
-
-        tau1_ex=[0*ms,0*ms]
-        tau2_ex=[1*ms,1*ms]
-        n_syn_ex = [10,10]
-        syn_max_mf = N
-        g_syn_ex_s = [0.5,0.5]
-        g_syn_ex = [0.007,0.005]
-        syn_ex_dist = [(0,0,0),(0.5,0,0)] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        noise_a = [1e9,1e9]
-        noise_syn = [0.01,0.01]
-        noise_syn_tau = [-1,-1]
-
-        len_train = 10
-        len_test = 5
-
-        prefix = prefix + "_timeconst"
-
 
     if "_ifun_" in do:
 
@@ -1811,897 +1505,6 @@ for d, do in enumerate(do_vec):
 
     mfratio = 0.5
 
-    if "_ifun3_" in do:
-
-        dt = 1*ms
-        cellimport = ["import cells.ifun._ifun3 as ifun3"]
-        celltype = ["ifun3"]
-        cell_exe = [""]
-
-        conntype=[{'type':'e2inh', 'src':0, 'tgt':0, 'w':0, 'var':0, 'tau1':50*ms, 'tau2':0*ms, 'conv':400}, # GrC inh.
-                  {'type':'e2b', 'src':1, 'tgt':1, 'w':1, 'var':0, 'tau1':50*ms, 'tau2':0*ms, 'conv':1}, # UBC to UBC
-                  {'type':'e2inhubc', 'src':0, 'tgt':1, 'w':0, 'var':0, 'tau1':3*ms, 'tau2':0*ms, 'conv':4}, #UBC to GoC inhibition
-                 ]
-
-        N = [1000,200]
-
-        amod = [0.1]
-        ihold = [1]
-        ihold_sigma = [0.1]
-
-        factor_celltype = [[1,0,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        anoise = [0]
-
-        len_train = 10
-        len_test = 10
-
-        lymax = 7
-
-        xmin = 0; xmax=4 ; vec0w = np.arange(0,4.02,0.02)
-
-        noise_out = 0
-
-        prefix = prefix + "_ifun3"
-
-        use_c = True
-        use_mpi = False
-        ridge_alpha = 10
-
-
-
-    if "_ifun4_" in do:
-
-        dt = 1*ms
-        cellimport = ["import cells.ifun._ifun4 as ifun4"]
-        celltype = ["ifun4"]
-        cell_exe = [""]
-
-        conntype=[{'type':'e2inh', 'src':1, 'tgt':0, 'w':0, 'var':0, 'tau1':50*ms, 'tau2':0*ms, 'conv':4}, # GrC inh.
-                  {'type':'e2ex', 'src':0, 'tgt':1, 'w':0, 'var':0, 'tau1':1*ms, 'tau2':0*ms, 'conv':100}, # GoC ex.
-                  {'type':'e2m', 'src':0, 'tgt':1, 'w':0, 'var':0, 'tau1':50*ms, 'tau2':0*ms, 'conv':0, 'prob':1}, # mGluR2
-                  {'type':'e2b', 'src':2, 'tgt':2, 'w':1, 'var':0, 'tau1':50*ms, 'tau2':0*ms, 'conv':1}, # UBC to UBC
-                  {'type':'e2mf', 'src':2, 'tgt':1, 'w':0, 'var':0, 'tau1':0*ms, 'tau2':0*ms, 'conv':0}, # MF input to GoC
-                  {'type':'e2inhubc', 'src':1, 'tgt':2, 'w':0, 'var':0, 'tau1':3*ms, 'tau2':0*ms, 'conv':4}, #GoC to UBC inhibition
-                 ]
-
-        N = [1000,100,200]
-        mfratio = 0.5
-
-        amod = [0.1]
-        ihold = [1]
-        ihold_sigma = [0]
-
-        factor_celltype = [[1,0,0.5,0]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        anoise = [0]
-
-        len_train = 10
-        len_test = 10
-
-        lymax = 2
-        lymin = 0.2
-
-        xmin = 0; xmax=4 ; vec3w = np.arange(0,4.02,0.02)
-
-        if "_ubconly_" in do:
-            xmin = 0; xmax=0.03; vec3w = np.arange(0,0.0305,0.0005)
-
-        if "_noubc_" in do:
-            xmin = 0; xmax=4; vec0w = np.arange(0,4.02,0.02)
-
-        if "_andubc_" in do:
-            xmin = 0; xmax=4; vec0w = np.arange(0,4.02,0.02)
-
-        noise_out = 0
-
-        prefix = prefix + "_ifun4"
-
-        use_c = True
-        use_mpi = False
-        ridge_alpha = 10
-
-
-
-    if "_iif_" in do:
-
-        dt = 0.1*ms
-        istart = 1; istop = 100; di = 1
-
-        cellimport = []
-        celltype = ["IfCell"]
-        cell_exe = ["cell = IfCell(C = 1, R = 1e14, e = 0, thresh = 1, vrefrac = 0)"]
-
-        conntype=[{'type':'e2inh', 'src':0, 'tgt':0, 'w':0.2, 'var':0, 'tau1':0*ms, 'tau2':100*ms, 'conv':4, 'e_inh':0},
-                 ]
-
-        N = [500]
-
-        amod = [1]
-        ihold = [40]
-        ihold_sigma = [0.5]
-
-        factor_celltype = [[1,0,0.5]]  #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        len_train = 100
-        len_test = 10
-
-        xmin = 0; xmax=10; vec0w = np.arange(0.2,10.2,0.2)
-
-        prefix = prefix + "_iif"
-
-
-    if "_iif2_" in do:
-
-        dt = 0.1*ms
-        istart = 1; istop = 1000; di = 2
-
-        cellimport = []
-        celltype = ["IfCell","IfCell"]
-        cell_exe = ["cell = IfCell(C = 1, R = 1e14, e = 0, thresh = 1, vrefrac = 0)",
-                    "cell = IfCell(C = 1, R = 1e14, e = 0, thresh = 1, vrefrac = 0)"]
-
-        conntype=[{'type':'e2inh', 'src':1, 'tgt':0, 'w':1, 'var':0, 'tau1':0*ms, 'tau2':100*ms, 'conv':4, 'e_inh':0.}, #0.0005
-                  {'type':'e2ex', 'src':0, 'tgt':1, 'w':1, 'var':0, 'tau1':0*ms, 'tau2':1*ms, 'conv':100, 'e_ex':2.}
-                 ]
-
-        N = [500,40]
-
-        amod = [1,0]
-        ihold = [50,0]
-        ihold_sigma = [0.1,0]
-
-        factor_celltype = [[1,0,0.5],[0,0,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        len_train = 10
-        len_test = 1
-
-        xmin = 0; xmax=10; vec0w = np.arange(0.2,10.2,0.2)
-
-        prefix = prefix + "_iif2"
-
-    mt0 = None
-    if "_mt" in do:
-        mt0 = int(str(do).split("_mt")[1].split("_")[0])
-        prefix = prefix + "_mt" + str(mt0)
-
-    if "_if_" in do:
-
-        if mt0 == None: mt0 = 10
-
-        cellimport = []
-        celltype = ["IfCell"]
-        cell_exe = ["cell = IfCell(C = 1e-03, R = " + str(mt0) + ", e = 0, thresh = 1, vrefrac = 0)",
-                    ]
-
-        conntype=[{'type':'e2inh', 'src':0, 'tgt':0, 'w':0.005, 'var':0, 'tau1':0*ms, 'tau2':50*ms, 'conv':4, 'e_inh':0.},
-                 ]
-
-        if mt0 == 1:
-            istart = 0.001; istop = 2; di = 0.001
-        elif mt0 == 10:
-            istart = 0.001; istop = 1; di = 0.001
-        elif mt0 == 100:
-            istart = 0.001; istop = 0.9; di = 0.001
-
-        N = [500]
-
-        amod = [1]
-        ihold = [500]
-        ihold_sigma = [0.5]
-
-        factor_celltype = [[1,0,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        xmin = 0; xmax=0.05; vec0w = np.arange(0,0.051,0.001)
-        if "_0conv400_" in do:
-            xmin = 0; xmax=0.005; vec0w = np.arange(0,0.0051,0.0001)
-        if "_0conv40_" in do:
-            xmin = 0; xmax=0.005; vec0w = np.arange(0,0.0051,0.0001)
-            if "_0tau2v50_" in do:
-                xmin = 0; xmax=0.01; vec0w = np.arange(0,0.0105,0.0005)
-
-        len_train = 100
-        len_test = 10
-
-        prefix = prefix + "_if"
-
-
-    if "_if2_" in do:
-
-        if mt0 == None: mt0 = 10
-
-        cellimport = []
-        celltype = ["IfCell", "IfCell"]
-        cell_exe = ["cell = IfCell(C = 1e-03, R = 10, e = 0, thresh = 1, vrefrac = 0)",
-                    "cell = IfCell(C = 1e-03, R = " + str(mt0) + ", e = 0, thresh = 1, vrefrac = 0)"]
-
-        conntype=[{'type':'e2inh', 'src':1, 'tgt':0, 'w':0.005, 'var':0, 'tau1':0*ms, 'tau2':50*ms, 'conv':4, 'e_inh':0.},
-                  {'type':'e2ex', 'src':0, 'tgt':1, 'w':0.0001, 'var':0, 'tau1':0*ms, 'tau2':50*ms, 'conv':100, 'e_ex':2.},
-                 ]
-
-        if mt0 == 1:
-            istart = 0.001; istop = 2; di = 0.001
-        elif mt0 == 10:
-            istart = 0.001; istop = 1; di = 0.001
-
-        N = [500, 100]
-
-        amod = [1,0]
-        ihold = [500, 0]
-        ihold_sigma = [0.5, 0]
-
-        factor_celltype = [[1,0,0.5],[0,0,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        xmin = 0; xmax=0.07; vec0w = np.arange(0,0.075,0.005)
-        if "_1conv10_" in do:
-            xmin = 0; xmax=0.05; vec0w = np.arange(0,0.051,0.001)
-
-        #if "_mt1_" in do:
-        #    xmin = 0; xmax=0.05; vec0w = np.arange(0,0.051,0.001)
-        #if "_mt100_" in do:
-        #    xmin = 0; xmax=0.05; vec0w = np.arange(0,0.051,0.001)
-
-        len_train = 100
-        len_test = 10
-
-        prefix = prefix + "_if2"
-
-
-
-    if "_grcgoc1_" in do:
-
-        dt = 0.05*ms
-
-        thresh = -41.8
-        R = 5227*MOhm
-
-        cellimport = ["from cells.IfCell import *", "from cells.IfCell import *"]
-        celltype = ["IfCell","IfCell"]
-        cell_exe = ["cell = IfCell(C = 3e-06*uF, R = " + str(R) + ", e = -71.5*mV, thresh =" + str(thresh) + ", vrefrac = -71.5*mV)",
-                    "cell = IfCell(C = 50e-06*uF, R = 333*MOhm, e = -65*mV, thresh = -50*mV, vrefrac = -65*mV)"]
-
-        conntype=[{'type':'gogr', 'src':1, 'tgt':0, 'w':1, 'var':0.5, 'tau1':0, 'tau2':0, 'conv':4, 'mgr2':0, 'mgr2_var':0},
-                  {'type':'grgo', 'src':0, 'tgt':1, 'w':1, 'var':0.5, 'tau1':0, 'tau2':0, 'conv':100, 'mgr2':0, 'mgr2_var':0}
-                 ]
-
-        istart = 0
-        istop = 0.1
-        di = 0.001
-
-        N = [500, 100]
-
-        amod = [1,0]
-        ihold = [500, 0]
-        ihold_sigma = [0.1, 0]
-
-        factor_celltype = [[1,0,0.5],[0,0,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        xmin = 0; xmax=10; vec0w = np.arange(0,10,1)
-        if "_1conv10_" in do:
-            xmin = 0; xmax=10; vec0w = np.arange(0,10,1)
-
-        len_train = 100
-        len_test = 10
-
-        prefix = prefix + "_grcgoc1"
-
-        max_freq = 1e10
-
-
-    if "_grcgoc1b_" in do:
-
-        dt = 0.05*ms
-
-        cellimport = ["from templates.granule.GRANULE_Cell import Grc",
-                      #"from cells.IfCell import *"]
-                     "from templates.golgi.Golgi_template import Goc"]
-        celltype = ["Grc",
-                    #"IfCell"]
-                   "Goc"]
-        cell_exe = ["cell = Grc(np.array([0.,0.,0.]))",
-                    #"cell = IfCell(C = 1e-03, R = 10, e = 0, thresh = 1, vrefrac = 0)"]
-                    "cell = Goc(np.array([0.,0.,0.]))"]
-
-        conntype=[{'type':'e2inh', 'src':1, 'tgt':0, 'w':0.005, 'var':1, 'tau1':0*ms, 'tau2':50*ms, 'conv':4, 'e_inh':-65*mV},
-                  {'type':'e2ex', 'src':0, 'tgt':1, 'w':0.0001, 'var':1, 'tau1':0*ms, 'tau2':50*ms, 'conv':100, 'e_ex':0},
-                 ]
-
-        istart = 0
-        istop = 0.1
-        di = 0.001
-
-        N = [500, 100]
-
-        amod = [1,0]
-        ihold = [100, 0]
-        ihold_sigma = [0.5, 0]
-
-        factor_celltype = [[1,0,0.5],[0,0,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        xmin = 0; xmax=0.0001; vec0w = np.arange(0,0.0001,0.00001)
-        if "_1conv10_" in do:
-            xmin = 0; xmax=0.0001; vec0w = np.arange(0,0.0001,0.00001)
-
-        len_train = 100
-        len_test = 10
-
-        prefix = prefix + "_grcgoc1b"
-
-
-    if "_grcgoc2_" in do:
-
-        dt = 0.05*ms
-
-        cellimport = ["from templates.granule.GRANULE_Cell import Grc", "from templates.golgi.Golgi_template import Goc"]
-        celltype = ["Grc","Goc"]
-        cell_exe = ["cell = Grc(np.array([0.,0.,0.]))",
-                    "cell = Goc(np.array([0.,0.,0.]))"]
-
-        conntype=[{'type':'gogr', 'src':1, 'tgt':0, 'w':1, 'var':0.5, 'tau1':0, 'tau2':0, 'conv':4, 'mgr2':0, 'mgr2_var':0},
-                  {'type':'grgo', 'src':0, 'tgt':1, 'w':1, 'var':0.5, 'tau1':0, 'tau2':0, 'conv':100, 'mgr2':0, 'mgr2_var':0}
-                 ]
-
-        istart = 0
-        istop = 0.1
-        di = 0.001
-
-        N = [500, 100]
-
-        amod = [1,0]
-        ihold = [100, 0]
-        ihold_sigma = [0.2, 0]
-
-        factor_celltype = [[1,0,0.5],[0,0,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        xmin = 0; xmax=1; vec0w = np.arange(0,0.8,0.1)
-        if "_1conv10_" in do:
-            xmin = 0; xmax=1; vec0w = np.arange(0,0.8,0.1)
-
-        len_train = 100
-        len_test = 10
-
-        prefix = prefix + "_grcgoc2"
-
-        #max_freq = 80
-
-
-    if "_grcgocmglur2_" in do:
-
-        dt = 0.05*ms
-
-        cellimport = ["from templates.granule.GRANULE_Cell import Grc", "from templates.golgi.Golgi_template import Goc"]
-        celltype = ["Grc","Goc"]
-        cell_exe = ["cell = Grc(np.array([0.,0.,0.]))",
-                    "cell = Goc(np.array([0.,0.,0.]))"]
-
-        conntype=[
-                  {'type':'gogr', 'src':1, 'tgt':0, 'w':1, 'var':1, 'tau1':0, 'tau2':0, 'conv':4, 'mgr2':0, 'mgr2_var':0}, # 0.6
-                  {'type':'grgom', 'src':0, 'tgt':1, 'w':1*0.5, 'var':1, 'tau1':0, 'tau2':0, 'conv':100, 'mgr2':1/0.5, 'mgr2_var':1},
-                 ]
-
-        istart = 0
-        istop = 0.1
-        di = 0.001
-
-        N = [500, 100]
-
-        amod = [1,0]
-        ihold = [200, 0]
-        ihold_sigma = [0.5, 0]
-
-        factor_celltype = [[1,0,0.5],[0,0,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        xmin = 0; xmax=0.0001; vec0w = np.arange(0,0.0001,0.00001)
-        if "_1conv10_" in do:
-            xmin = 0; xmax=0.0001; vec0w = np.arange(0,0.0001,0.00001)
-
-        len_train = 100
-        len_test = 10
-
-        prefix = prefix + "_grcgoc2"
-
-
-    if "_fastprot_" in do:
-
-        istart = 0.0001; istop = 0.04; di = 0.0001
-
-        cellimport = []
-        celltype = ["IfCell", "IfCell"]
-
-        cell_exe = ["cell = IfCell(C = 0.5*pF, R = 2000*MOhm, e = -60*mV, thresh = -35*mV, vrefrac = -60*mV, dgk = 2*nS, egk = -82*mV, ctau = 6*ms)",
-                    "cell = IfCell(C = 0.5*pF, R = 2000*MOhm, e = -60*mV, thresh = -35*mV, vrefrac = -60*mV, dgk = 2*nS, egk = -82*mV, ctau = 6*ms)"]
-
-        conntype=[{'type':'e2ex', 'src':0, 'tgt':1, 'w':10*nS/100, 'var':0, 'tau1':0*ms, 'tau2':1*ms, 'conv':100},
-                  {'type':'e2inh', 'src':1, 'tgt':0, 'w':2*nS/4, 'var':0, 'tau1':0*ms, 'tau2':100*ms, 'conv':4}
-                 ]
-
-        #conntype=[{'type':'e2ex', 'src':0, 'tgt':1, 'w':0.01*nS, 'var':0.5, 'tau1':1*ms, 'tau2':50*ms, 'conv':100},
-        #          {'type':'e2inh', 'src':1, 'tgt':0, 'w':0.5*nS, 'var':0.5, 'tau1':1*ms, 'tau2':50*ms, 'conv':4}
-        #         ]
-
-        #conntype=[{'type':'e2ex', 'src':0, 'tgt':1, 'w':0.5*nS, 'var':0, 'tau1':0*ms, 'tau2':3*ms, 'conv':100},
-        #          {'type':'e2inh', 'src':1, 'tgt':0, 'w':0.1*nS, 'var':0, 'tau1':0*ms, 'tau2':100*ms, 'conv':4}
-        #         ]
-
-        N = [1000, 40]
-
-        ihold = [200, 0]
-        ihold_sigma = [0.5, 0]
-
-        len_train = 10
-        len_test = 1
-
-        factor_celltype = [[1,0.000001,0.5],[1,0.000001,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-        dumpsave = 0
-
-        prefix = prefix + "_fastprot"
-
-
-    if "_newprot_" in do:
-
-        istart = 0.002; istop = 0.05; di = 0.001
-
-        cellimport = []
-        celltype = ["IfCell", "IfCell"]
-
-        # From openloop paper
-        #cell_exe = ["cell = IfCell(C = 3e-06*uF, R = 5227*MOhm, e = -71.5*mV, thresh = -41.8*mV, vrefrac = -71.5*mV)",
-        #            "cell = IfCell()"]
-
-        # ROTHMAN 2009:
-        # 3.1 pF, 2.6 GOhm = 3.1e-12*2.6e9 = 8 ms
-
-        # From passive properties (all_cells_analyse.py)
-        cell_exe = ["cell = IfCell(C = 3.1e-06*uF, R = 2600*MOhm, e = -75*mV, thresh = -49*mV, vrefrac = -75*mV)",
-                    "cell = IfCell(C = 107e-06*uF, R = 235*MOhm, e = -58*mV, thresh = -50*mV, vrefrac = -58*mV)"]
-
-        # FROM MODEL SOLINAS 2010:
-        # GO->GC(GABA): 66.6 ms, fit to Model!
-        # GC_AA->GO(AMPA,NMDA) 8.77 ms, fit to Model! ?
-        # GC->GO(AMPA,NMDA,KAIN) 2.81 ms, fit to Model! (no diffusion!) ?
-
-        # WARD 2012:
-        # GABA spillover: slowest component up to 150 ms
-
-        conntype=[{'type':'e2ex', 'src':0, 'tgt':1, 'w':0.05*nS, 'var':0.5, 'tau1':0*ms, 'tau2':8*ms, 'conv':100},
-                  {'type':'e2inh', 'src':1, 'tgt':0, 'w':0.001*nS, 'var':0.5, 'tau1':0*ms, 'tau2':66.6*ms, 'conv':4}
-                 ]
-
-        N = [4500, 27]
-
-        ihold = [50, 30]
-        ihold_sigma = [0.1, 0.1]
-
-        #tau=5*ms
-        #tau_inh=100*ms
-        #weight=0.2*nS
-        #weight_inh=0.4*nS
-
-        #fluct_s = [0.001,0.001]
-        #fluct_tau = 10*ms
-
-        factor_celltype = [[1,0.5,0.5],[1,0.5,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-        dumpsave = 0
-
-        prefix = prefix + "_newprot"
-
-
-    if "_mglur2stl_" in do:
-
-        dt = 0.025*ms
-
-        istart = 0.002; istop = 0.05; di = 0.001
-
-        cellimport = []
-        celltype = ["IfCell", "IfCell"]
-
-        # From passive properties (all_cells_analyse.py)
-        #cell_exe = ["cell = IfCell(C = 3.1e-06*uF, R = 2600*MOhm, e = -75*mV, thresh = -49*mV, vrefrac = -75*mV)",
-        #            "cell = IfCell(C = 107e-06*uF, R = 235*MOhm, e = -58*mV, thresh = -50*mV, vrefrac = -58*mV)"]
-
-        cellimport = ["from templates.granule.GRANULE_Cell import Grc", "from templates.golgi.Golgi_template import Goc", "from templates.mli.stellate import Stellate"]
-        celltype = ["Grc","Goc","Stl"]
-        cell_exe = ["cell = Grc(np.array([0.,0.,0.]))","cell = Goc(np.array([0.,0.,0.]))","cell = Stellate(np.array([0.,0.,0.]))"]
-
-        conntype=[{'type':'grgom', 'src':0, 'tgt':1, 'w':1, 'var':0.1, 'tau1':0, 'tau2':0, 'conv':100},
-                  {'type':'gogr', 'src':1, 'tgt':0, 'w':1, 'var':0.1, 'tau1':0, 'tau2':0, 'conv':4},
-                  {'type':'grstl', 'src':0, 'tgt':2, 'w':1, 'var':0.1, 'tau1':0, 'tau2':0, 'conv':10}
-                 ]
-
-        N = [1000, 40, 300]
-
-        #amod = [9,0.1]
-        #ihold = [0.02, 0.06]
-        #ihold_sigma = [0.5, 0.5]
-
-        give_freq = True
-
-        amod = [1,1,0]
-
-        ihold = [40, 40, 0]
-        ihold_sigma = [0.2, 0.2, 0]
-        fluct_s = [0,0,0]
-
-        dumpsave = 1
-
-        tau1_ex=['gr','go','']
-        tau2_ex=['','','']
-        n_syn_ex = [4,50,0]
-        syn_max_mf = [10,10,0] #N # independent ex trains per synapse!
-        g_syn_ex_s = [0.5,0.5,0]
-        g_syn_ex = [1,2,0]
-        noise_a = [1,1,0]
-        noise_syn = [0,0,0]
-        noise_syn_tau = [0,0,0]
-
-        noise_a = [1,1,0]
-        noise_syn = [0,0,0]
-        noise_syn_tau = [0,0,0]
-
-        prefix = prefix + "_mglur2stl"
-
-
-    if "_mglur2_" in do:
-
-        dt = 0.025*ms
-
-        istart = 0.002; istop = 0.05; di = 0.001
-
-
-        cellimport = ["from templates.granule.GRANULE_Cell import Grc", "from templates.golgi.Golgi_template import Goc"]
-        celltype = ["Grc","Goc"]
-        cell_exe = ["cell = Grc(np.array([0.,0.,0.]))","cell = Goc(np.array([0.,0.,0.]))"]
-
-        conntype=[{'type':'grgom', 'src':0, 'tgt':1, 'w':1*0.5, 'var':1, 'tau1':0, 'tau2':0, 'conv':100, 'mgr2':1/0.5, 'mgr2_var':1},
-                  {'type':'gogr', 'src':1, 'tgt':0, 'w':1, 'var':1, 'tau1':0, 'tau2':0, 'conv':4, 'mgr2':0, 'mgr2_var':0} # 0.6
-                 ]
-
-        N = [1000, 100]
-        #N = [500, 50]
-
-        #conntype=[{'type':'grgom', 'src':0, 'tgt':1, 'w':0, 'var':0, 'tau1':0, 'tau2':0, 'conv':100, 'mgr2':0, 'mgr2_var':0},
-        #          {'type':'gogr', 'src':1, 'tgt':0, 'w':0, 'var':0, 'tau1':0, 'tau2':0, 'conv':4, 'mgr2':0, 'mgr2_var':0} # 0.6
-        #         ]
-        #N = [500, 100]
-
-
-        give_freq = True
-
-        amod = [10,10]
-
-        ihold = [40, 40]
-        ihold_sigma = [0.5, 0.5]
-        fluct_s = [0,0]
-
-        dumpsave = 1
-
-        tau1_ex=['gr','go']
-        tau2_ex=['','']
-        n_syn_ex = [4,50]
-        #n_syn_ex = [5,50]
-        syn_max_mf = N #[1000,100] #N # independent ex trains per synapse!
-        g_syn_ex_s = [0.5,0.5]
-        g_syn_ex = [1.5,3.5]
-        syn_ex_dist = [(1,0.1,0.5),(1,0.1,0.5)] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        mglufac_ex = [0.5, 0.5] # for mf->golgi cells only! mean, var
-        #mglufac_ex = [0, 0] # for mf->golgi cells only! mean, var
-
-        # poiss
-        noise_a = [10,10]
-        noise_syn = [0,0]
-        noise_syn_tau = [0,0]
-
-        # low noise CV: 0.003, FANO: 0.0025
-        #noise_a = [1e9,1e9]
-        #noise_syn = [0.01,0.01]
-        #noise_syn_tau = [-1,-1]
-
-        # med noise CV: 0.1, FANO: 0.025
-        noise_a = [1e9,1e9]
-        noise_syn = [0.5,0.5]
-        noise_syn_tau = [-1,-1]
-
-        # high noise CV: 0.1, FANO: 0.025
-        #noise_a = [1e9,1e9]
-        #noise_syn = [10,10]
-        #noise_syn_tau = [-1,-1]
-
-        # gamma noise CV: 0.1, FANO: 0.025
-        #noise_a = [100,100]
-        #noise_syn = [0,0]
-        #noise_syn_tau = [0,0]
-
-        #fluct_s = [0.01,0.01]
-        #fluct_tau = 1*ms
-
-        len_train = 100
-        len_test = 10
-
-        #len_train = 3
-        #len_test = 2
-
-        p0 = []
-        p0.append(conntype[0]['w'])
-        p0.append(conntype[1]['w'])
-
-        upper_bounds = [100,100]
-        lower_bounds = [0,0]
-
-        ranges = ( (0.1, 10), (0.1, 10) )
-
-        myranges = [ [0.1, 0.5, 1, 5, 10],
-                     [0.1, 0.5, 1, 5, 10]
-                   ]
-
-        def residuals(p, *args):
-
-            params['conntype'][0]['w'] = p[0]
-            params['conntype'][1]['w'] = p[1]
-
-            if myid == 0: print "conntype[0]['w']=", p[0], " conntype[1]['w']=", p[1]
-
-            pca_var, pca_start, pca_max, mean_spike_freq, basis_error = randomnet(params)
-
-            save_results(pickle_prefix,p,basis_error, use_h5 = use_h5, data_dir=data_dir)
-
-            err = basis_error
-
-            barrier(use_mpi, use_pc)
-
-            return err
-
-        prefix = prefix + "_mglur2"
-
-
-    if "_oldmglur2_" in do:
-
-        dt = 0.025*ms
-
-        istart = 0.002; istop = 0.05; di = 0.001
-
-
-        cellimport = ["from templates.granule.GRANULE_Cell import Grc", "from templates.golgi.Golgi_template import Goc"]
-        celltype = ["Grc","Goc"]
-        cell_exe = ["cell = Grc(np.array([0.,0.,0.]))","cell = Goc(np.array([0.,0.,0.]))"]
-
-        conntype=[{'type':'grgom', 'src':0, 'tgt':1, 'w':1*0.5, 'var':1, 'tau1':0, 'tau2':0, 'conv':100, 'mgr2':1/0.5, 'mgr2_var':1},
-                  {'type':'gogr', 'src':1, 'tgt':0, 'w':0.6, 'var':1, 'tau1':0, 'tau2':0, 'conv':4, 'mgr2':0, 'mgr2_var':0} # 0.6
-                 ]
-
-        N = [2000, 100]
-
-        #conntype=[{'type':'grgom', 'src':0, 'tgt':1, 'w':0, 'var':0, 'tau1':0, 'tau2':0, 'conv':100, 'mgr2':0, 'mgr2_var':0},
-        #          {'type':'gogr', 'src':1, 'tgt':0, 'w':0, 'var':0, 'tau1':0, 'tau2':0, 'conv':4, 'mgr2':0, 'mgr2_var':0} # 0.6
-        #         ]
-        #N = [500, 100]
-
-
-        give_freq = True
-
-        amod = [10,10]
-
-        ihold = [40, 40]
-        ihold_sigma = [0.5, 0.5]
-        fluct_s = [0,0]
-
-        dumpsave = 1
-
-        tau1_ex=['gr','go']
-        tau2_ex=['','']
-        n_syn_ex = [4,50]
-        #n_syn_ex = [5,50]
-        syn_max_mf = N #[1000,100] #N # independent ex trains per synapse!
-        g_syn_ex_s = [0.5,0.5]
-        g_syn_ex = [1,3.5]
-        syn_ex_dist = [(1,0.1,0.5),(1,0.1,0.5)] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        mglufac_ex = [0.5, 0.5] # for mf->golgi cells only! mean, var
-        #mglufac_ex = [0, 0] # for mf->golgi cells only! mean, var
-
-        # poiss
-        noise_a = [10,10]
-        noise_syn = [0,0]
-        noise_syn_tau = [0,0]
-
-        # low noise CV: 0.003, FANO: 0.0025
-        #noise_a = [1e9,1e9]
-        #noise_syn = [0.01,0.01]
-        #noise_syn_tau = [-1,-1]
-
-        # med noise CV: 0.1, FANO: 0.025
-        noise_a = [1e9,1e9]
-        noise_syn = [0.5,0.5]
-        noise_syn_tau = [-1,-1]
-
-        # high noise CV: 0.1, FANO: 0.025
-        #noise_a = [1e9,1e9]
-        #noise_syn = [10,10]
-        #noise_syn_tau = [-1,-1]
-
-        # gamma noise CV: 0.1, FANO: 0.025
-        #noise_a = [100,100]
-        #noise_syn = [0,0]
-        #noise_syn_tau = [0,0]
-
-        #fluct_s = [0.01,0.01]
-        #fluct_tau = 1*ms
-
-        len_train = 100
-        len_test = 10
-
-        #len_train = 3
-        #len_test = 2
-
-        p0 = []
-        p0.append(conntype[0]['w'])
-        p0.append(conntype[1]['w'])
-
-        upper_bounds = [100,100]
-        lower_bounds = [0,0]
-
-        ranges = ( (0.1, 10), (0.1, 10) )
-
-        myranges = [ [0.1, 0.5, 1, 5, 10],
-                     [0.1, 0.5, 1, 5, 10]
-                   ]
-
-        def residuals(p, *args):
-
-            params['conntype'][0]['w'] = p[0]
-            params['conntype'][1]['w'] = p[1]
-
-            if myid == 0: print "conntype[0]['w']=", p[0], " conntype[1]['w']=", p[1]
-
-            pca_var, pca_start, pca_max, mean_spike_freq, basis_error = randomnet(params)
-
-            save_results(pickle_prefix,p,basis_error, use_h5 = use_h5, data_dir=data_dir)
-
-            err = basis_error
-
-            barrier(use_mpi, use_pc)
-
-            return err
-
-        prefix = prefix + "_oldmglur2"
-
-
-    if "_yamazaki_" in do:
-
-        cellimport = []
-        celltype = ["IfCell", "IfCell"]
-        cell_exe = ["cell = IfCell()", "cell = IfCell()"]
-
-        # Yamazaki Model
-        #celltype = ["IfCell", "IfCell"]
-        #cell_exe = ["cell = IfCell(C = 3.1*pF, R = 1/(0.43*nS), e = -58*mV, thresh = -35*mV, vrefrac = -58*mV, dgk = 1*nS, egk = -82*mV, ctau = 5*ms)",
-        #            "cell = IfCell(C = 28*pF, R = 1/(2.3*nS), e = -55*mV, thresh = -52*mV, vrefrac = -55*mV, dgk = 20*nS, egk = -72.7*mV, ctau = 5*ms)"]
-        #N = [2450, 80]
-
-        conntype=[{'type':'e2ex', 'src':0, 'tgt':1, 'w':0.05*nS, 'var':0.5, 'tau1':1*ms, 'tau2':50*ms, 'conv':100},
-                  {'type':'e2inh', 'src':1, 'tgt':0, 'w':0.5*nS, 'var':0.5, 'tau1':1*ms, 'tau2':50*ms, 'conv':4}
-                 ]
-
-        N = [1000, 40]
-
-        ihold = [50, 0]
-        ihold_sigma = [0.1, 0]
-
-        #fluct_s = [0.001,0.001]
-        #fluct_tau = 10*ms
-        factor_celltype = [[1,0.5,0.5],[1,0.5,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        prefix = prefix + "_yamazaki"
-
-
-    if "_stlproto_" in do:
-
-        # Connections overview:
-        # MF->GC(AMPA,NMDA): 11.6 ms, fit to Model!
-        # GO->GC(GABA): 66.6 ms, fit to Model!
-        # MF->GO(AMPA,NMDA) 8.77 ms, fit to Model! ?
-        # GC_AA->GO(AMPA,NMDA) 8.77 ms, fit to Model! ?
-        # GC->GO(AMPA,NMDA,KAIN) 2.81 ms, fit to Model! (no diffusion!) ?
-        # GC->STL: 1.2 ms / 2.4**((37-32)/10) = 0.77 ms Suter and Jaeger 2004 (Liu Cull-Candy 2002, Carter Regehr 2000 & Liu Cull-Candy 2005)
-        # STL->GO: NOT THERE???  25.9 ms, Doumoulin et al. 2001 WHY?
-        # GO->GO:
-
-        istart = 0.0001; istop = 0.1; di = 0.0001
-
-        cellimport = []
-        celltype = ["IfCell", "IfCell", "IfCell"]
-        cell_exe = ["cell = IfCell(C = 2*pF, R = 1/(0.2*nS), e = -65*mV, thresh = -40*mV, vrefrac = -65*mV)", # 0. GC
-                    "cell = IfCell(C = 50*pF, R = 1/(3*nS), e = -65*mV, thresh = -50*mV, vrefrac = -65*mV)",  # 1. GO
-                    "cell = IfCell(C = 4*pF, R = 1/(0.2*nS), e = -56*mV, thresh = -40*mV, vrefrac = -56*mV)"] # 2. SC
-
-        conntype=[{'type':'e2ex', 'src':0, 'tgt':1, 'w':0.06*nS, 'var':0.5, 'tau1':0*ms, 'tau2':5*ms, 'conv':100},
-                  {'type':'e2inh', 'src':1, 'tgt':0, 'w':0.005*nS, 'var':0.5, 'tau1':0*ms, 'tau2':50*ms, 'conv':4},
-                  {'type':'e2ex', 'src':0, 'tgt':2, 'w':0.005*nS, 'var':0.5, 'tau1':0*ms, 'tau2':5*ms, 'conv':100},
-                  #{'type':'e2inh', 'src':2, 'tgt':1, 'w':0.005*nS, 'var':0.5, 'tau1':0*ms, 'tau2':50*ms, 'conv':50}
-                 ]
-
-        cell_exe = ["cell = IfCell(C = 2*pF, R = 1/(0.2*nS), e = -65*mV, thresh = -40*mV, vrefrac = -65*mV)", # 0. GC
-                    "cell = IfCell(C = 2*pF, R = 1/(0.2*nS), e = -65*mV, thresh = -40*mV, vrefrac = -65*mV)",  # 1. GO
-                    "cell = IfCell(C = 2*pF, R = 1/(0.2*nS), e = -65*mV, thresh = -40*mV, vrefrac = -65*mV)"] # 2. SC
-
-        conntype=[{'type':'e2ex', 'src':0, 'tgt':1, 'w':0.01*nS, 'var':0.5, 'tau1':0*ms, 'tau2':5*ms, 'conv':100},
-                  {'type':'e2inh', 'src':1, 'tgt':0, 'w':0.005*nS, 'var':0.5, 'tau1':0*ms, 'tau2':100*ms, 'conv':4},
-                  {'type':'e2ex', 'src':0, 'tgt':2, 'w':0.008*nS, 'var':0.5, 'tau1':0*ms, 'tau2':5*ms, 'conv':100},
-                  {'type':'e2inh', 'src':2, 'tgt':1, 'w':0.002*nS, 'var':0.5, 'tau1':0*ms, 'tau2':50*ms, 'conv':50},
-                  {'type':'e2inh', 'src':1, 'tgt':1, 'w':0.002*nS, 'var':0.5, 'tau1':0*ms, 'tau2':50*ms, 'conv':26}
-                 ]
-
-        N = [4500, 27, 300]
-        #N = [1000, 27, 300]
-
-        ihold = [50, 0, 0]
-        ihold_sigma = [0.1, 0, 0]
-        fluct_s = [0,0,0]
-
-        dumpsave = 0
-
-        #fluct_s = [0.0001,0.0001,0.0001]
-        #fluct_tau = 100*ms
-        factor_celltype = [[1,0.5,0.5],[1,0.5,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        prefix = prefix + "_stlproto"
-
-
-    if "_solinas_" in do:
-
-        dt = 0.05*ms
-
-        cellimport = ["from templates.granule.GRANULE_Cell import Grc", "from templates.golgi.Golgi_template import Goc"]
-        celltype = ["Grc","Goc"]
-        cell_exe = ["cell = Grc(np.array([0.,0.,0.]))","cell = Goc(np.array([0.,0.,0.]))"]
-
-        conntype='inh_gr__ex_go'
-
-        # IF
-        cellimport = []
-        celltype = ["IfCell", "IfCell"]
-        cell_exe = ["cell = IfCell()", "cell = IfCell()"]
-        weight = 2
-        weight_inh = 4
-
-        N = [1000, 40]
-
-        ihold = [60, 0]
-        ihold_sigma = [0.1, 0]
-
-        # NORMAL SYN
-        #weight = 2
-        #weight_inh = 0.2
-
-        # NEW SYN
-        #conntype='inh_gr__ex_e2'
-        #weight=0.05*nS
-        #weight_inh = 0.2
-
-        # NEW SYN
-        #conntype='inh_e2__ex_go'
-        #weight = 3
-        #weight_inh=0.02*nS
-
-        # NEW SYN
-        #conntype='inh_e2__ex_e2'
-        #weight = 0.001*nS
-        #weight_inh=0.05*nS
-
-        #weight=0.002*nS
-        #weight_inh=0.07*nS
-
-        weight_s = 0.5
-        weight_inh_s = 0.5
-
-        tau=50*ms
-        tau_inh=50*ms
-
-        fluct_s = [0.001,0.001]
-        fluct_tau = 10*ms
-        factor_celltype = [[1,0.5,0.5],[1,0.5,0.5]] #[:][0] mean height of modulation, [:][1] variance of modulation, [:][2] probability that modulation is inverse (NOW if >0, 50% inverse input!)
-
-        prefix = prefix + "_solinas"
 
     if "tau" in do:
         split = str(do).split("tau")
@@ -2748,10 +1551,6 @@ for d, do in enumerate(do_vec):
             else:
                 conntype[int(iline)]['conv'] = int(val)
 
-    #if "_N" in do:
-    #    N0 = str(do).split("_N")[1].split("_")[0]
-    #    prefix = prefix + "_N" + str(int(N0))
-    #    N[0] = int(N0)
 
     if "N" in do:
         split = str(do).split("N")
@@ -3401,15 +2200,8 @@ for d, do in enumerate(do_vec):
             import matplotlib.colors as mcolors
 
             c = mcolors.ColorConverter().to_rgb
-            #rvb = make_colormap([c(ye1), c(o1), 0.1, c(o1), c(r1), 0.2,  c(r1), c(g1), 0.4, c(g1), c(b1), 0.6, c(b1), c(p1), 0.9, c(p1), c(k1)])
-            #rvb = make_colormap([c(ye1), c(o1), 0.2, c(o1), c(r1), 0.4,  c(r1), c(g1), 0.6, c(g1), c(b1), 0.8, c(b1), c(k1)])
-            #rvb = make_colormap([c(ye1), c(o1), 0.33, c(r1), c(g1), 0.66, c(b1), c(p1)])
-            #rvb = make_colormap([c('red'), c('violet'), 0.33, c('violet'), c('blue'), 0.66, c('blue')])
-            #rvb = make_colormap([c(ye1), c(o1), 0.2, c(o1), c(r1), 0.4,  c(r1), c(g1), 0.6, c(g1), c(b1), 0.8, c(b1), c(p1)])
             rvb = make_colormap([c(k1), c(ye1), 0.1, c(ye1), c(o1), 0.3,  c(o1), c(r1), 0.5, c(r1), c(g1), 0.7, c(g1), c(b1), 0.8, c(b1), c(p1)])
-            #rvb = make_colormap([c(o1), c(o2), 0.2, c(r1), c(r2), 0.4,  c(g1), c(g2), 0.6, c(b1), c(b2), 0.8, c(p1), c(p2)])
-            #rvb = make_colormap([c(o1), 0.1, c(o2), 0.2, c(r1), 0.3, c(r2), 0.4,  c(g1), 0.5, c(g2), 0.6, c(b1), 0.7, c(b2), 0.8, c(p1), 0.9, c(p2)])
-
+            
             linewidth0 = 1
             i = 0
             ii = 0
@@ -3425,10 +2217,7 @@ for d, do in enumerate(do_vec):
 
                 else:
 
-                    if "fig1laurens" in opt:
-                        basis_in = basis_in[:,5:100]
-                        basis_in = basis_in-basis_in[0,:]
-                    elif "fig1fens" in opt:
+                    if "fig1fens" in opt:
                         basis_in = basis_in[:,5:100]
                     elif "_specy1_" in do:
                         basis_in = basis_in
@@ -3440,10 +2229,6 @@ for d, do in enumerate(do_vec):
                         if ii < l:
                             mx = max(basis_in[:,i])
                             if mx > 0:
-                                #if "_0wendv0.6_" in do:
-                                #    ax_sig.plot(t_basis-21,((basis_in[:,i]-mean(basis_in[:,i])) /max(basis_in[:,i]))+1, linewidth=linewidth0, color=plt.cm.jet(1.*ii/l))
-                                #if "_0wendv2.0_" in do:
-                                #    ax_sig.plot(t_basis-21,((basis_in[:,i]-mean(basis_in[:,i])) /max(basis_in[:,i]))+1, linewidth=linewidth0, color=plt.cm.jet(1.*ii/l))
                                 if "goc" in do:
                                     ax_sig.plot(t_basis-21,basis_in[:,i]*1, linewidth=linewidth0, color=rvb(1.*ii/l))
                                 else:
@@ -3456,14 +2241,6 @@ for d, do in enumerate(do_vec):
 
                 if "_test_" in do:
                     adjust_spines(ax_sig, ['left','bottom'], d_out = d_out, d_down = d_down)
-                    if "_goc_" in do:
-                        pass
-                        #ax_sig.axis(ymin=0.017, ymax=0.024)
-                        #ax_sig.axis(ymin=0.004, ymax=0.008)
-                    else:
-                        pass
-                        #ax_sig.axis(ymin=0.7, ymax=0.9)
-                        #ax_sig.axis(ymin=0.25, ymax=0.35)
 
                 else:
 
@@ -3496,10 +2273,6 @@ for d, do in enumerate(do_vec):
                     else:
                         adjust_spines(ax_sig, ['bottom'], d_out = d_out, d_down = d_down)
 
-                #ax_sig.xaxis.set_ticks(array([0,0.5,1]))
-                #ax_sig.set_xticklabels(('0','','1'))
-                #ax_sig.set_xlabel("s", labelpad=0)
-
                 ax_sig.xaxis.set_ticks(array([0,0.2,0.4]))
                 ax_sig.set_xticklabels(('0','0.2','0.4'))
                 if ("fig1" in opt):
@@ -3530,69 +2303,6 @@ for d, do in enumerate(do_vec):
                 rect.set_clip_on(False)
                 ax_sig.add_patch(rect)
 
-            elif "fig6" in opt:
-
-                l = 20
-                basis_in = basis_in[:,30:100]
-                li = np.shape(basis_in)[1]
-                for i in range(li):
-                    if ii < l:
-                        mx = max(basis_in[:,i])
-                        if mx > 0.05:
-                            ax_sig.plot(t_basis-21,((basis_in[:,i]-basis_in[0,i])), linewidth=linewidth0, color=rvb(1.*ii/l))
-                            ii += 1
-
-                ax_sig.axis(xmin=-0.1, xmax=0.5)
-
-                if "_noinv_" in do:
-                    ax_sig.axis(ymin=-0.01, ymax=0.13)
-                elif "_ubc_" not in do:
-                    ax_sig.axis(ymin=-0.07, ymax=0.07)
-                else:
-                    ax_sig.axis(ymin=-0.20, ymax=0.22)
-
-
-                if "_first_" in do:
-                    adjust_spines(ax_sig, ['left'], d_out = d_out, d_down = d_down)
-                else:
-                    adjust_spines(ax_sig, ['left','bottom'], d_out = d_out, d_down = d_down)
-
-
-                if "_noinv_" in do:
-                    ax_sig.yaxis.set_ticks(array([0,0.05,0.1]))
-                    ax_sig.set_yticklabels(('0', '', '0.1', ''))
-
-                elif "_ubc_" not in do:
-                    ax_sig.yaxis.set_ticks(array([-0.05,0,0.05]))
-                    ax_sig.set_yticklabels(('-0.5', '0', '0.5'))
-
-                else:
-                    ax_sig.yaxis.set_ticks(array([-0.2, -0.15, -0.1,-0.05,0,0.05,0.1, 0.15, 0.2]))
-                    ax_sig.set_yticklabels(('-0.2', '', '-0.1', '', '0', '', '0.1', '', '0.2'))
-
-                ax_sig.xaxis.set_ticks(array([0,0.2,0.4]))
-                ax_sig.set_xticklabels(('0','0.2','0.4'))
-                ax_sig.set_xlabel("s", labelpad=3)
-
-
-                if "_grc_" in do:
-                    ax_sig.set_ylabel(r"$\Delta\mathsf{z_i(t)}$", labelpad=-7)
-                    if "_noinv_" in do:
-                        ax_sig.set_title("GC rates (b="+ str(conntype[3]['w']) +", no push-pull)")
-                    else:
-                        ax_sig.set_title("GC rates (b="+ str(conntype[3]['w']) +")")
-
-                if "_ubc_" in do:
-                    ax_sig.set_ylabel(r"$\Delta\mathsf{p_i(t)}$", labelpad=-7)
-                    if "_noinv_" in do:
-                        ax_sig.set_title("UBC rates (b="+ str(conntype[3]['w']) +", no push-pull)")
-                    else:
-                        ax_sig.set_title("UBC rates (b="+ str(conntype[3]['w']) +")")
-
-                rect = patches.Rectangle((0,0.305), 0.05, 0.31, color="#000000", zorder=1000)
-                #rect.set_clip_on(False)
-                ax_sig.add_patch(rect)
-
             else:
 
                 l = 20
@@ -3602,22 +2312,14 @@ for d, do in enumerate(do_vec):
                     if ii < l:
                         mx = max(basis_in[:,i])
                         if mx > 0:
-                            #if "_0wendv0.6_" in do:
-                            #    ax_sig.plot(t_basis-21,((basis_in[:,i]-mean(basis_in[:,i])) /max(basis_in[:,i]))+1, linewidth=linewidth0, color=plt.cm.jet(1.*ii/l))
-                            #if "_0wendv2.0_" in do:
-                            #    ax_sig.plot(t_basis-21,((basis_in[:,i]-mean(basis_in[:,i])) /max(basis_in[:,i]))+1, linewidth=linewidth0, color=plt.cm.jet(1.*ii/l))
                             ax_sig.plot(t_basis-21,((basis_in[:,i]-basis_in[0,i])), linewidth=linewidth0, color=rvb(1.*ii/l))
                             ii += 1
 
                 ax_sig.axis(xmin=-0.25, xmax=1)
-                #ax_sig.axis(ymin=-0.005, ymax=0.31)
-
 
                 if "_first_" in do:
                     adjust_spines(ax_sig, ['left','bottom'], d_out = d_out, d_down = d_down)
                     ax_sig.set_ylabel(r"$\mathsf{z_i(t)}$", labelpad=-7)
-                #    ax_sig.yaxis.set_ticks(array([0,0.1,0.2,0.3]))
-                #    ax_sig.set_yticklabels(('0', '0.1', '0.2', '0.3'))
 
                 else:
                     adjust_spines(ax_sig, ['bottom'], d_out = d_out, d_down = d_down)
@@ -3626,14 +2328,6 @@ for d, do in enumerate(do_vec):
                 ax_sig.set_xticklabels(('0','','1'))
                 ax_sig.set_xlabel("s", labelpad=0)
 
-                #if "_noinv_" in do:
-                #    ax_sig.set_title("GrC rates \n (w="+ str(conntype[0]['w']) +", no push-pull)")
-                #else:
-                #    ax_sig.set_title("GrC rates \n (w="+ str(conntype[0]['w']) +")")
-
-                #rect = patches.Rectangle((0,0.305), 0.05, 0.31, color="#000000", zorder=1000)
-                #rect.set_clip_on(False)
-                #ax_sig.add_patch(rect)
 
             filename="./figs/Pub/" + opt + "_" + str(pickle_prefix)
             if use_pc is False: plt.savefig(filename + ".pdf", dpi = 300) # save it
@@ -4048,18 +2742,10 @@ for d, do in enumerate(do_vec):
 
                                 print p, fstd
 
-                                #mstdx = []
-                                #for j, t2 in enumerate(tau2_basis):
-                                #    xabs = abs(x[:,j])
-                                #    xabs = xabs[np.where(xabs>0)] # remove zero entries
-                                #    mstdx.append((mean(xabs), std(xabs)))
-                                #    mstdx.append((max(x[:,j]), min(x[:,j])))
-                                #    mstdx.append( float(len(np.where(x[:,j]==0)[0]))/len(x[:,j])*100 )
 
                                 filepath = data_dir + pickle_prefix_ly + "_lyap.hdf5"
                                 ly = rw_hdf5(filepath, export = export)['ly']
 
-                                #save_results(pickle_prefix, p, err = err, vaf = vaf, ly = ly, mstdx = mstdx, params = params, use_h5 = use_h5, run = r, data_dir=data_dir)
                                 save_results(pickle_prefix, p, err = err, vaf = vaf, ly = ly, mstdx = mstdx, fstd = fstd, params = params, use_h5 = use_h5, run = r, data_dir=data_dir)
 
                                 filepath = data_dir + pickle_prefix + "_results_pop_randomnet.hdf5"
@@ -4390,12 +3076,6 @@ for d, do in enumerate(do_vec):
                     if "_onlyslow_" not in do: ax01b.plot(p_v, err2_v_m, color=colgr[1], linestyle = linestyle, linewidth=linewidth, clip_on = False)
                     ax01b.plot(p_v, err3_v_m, color=colgr[2], linestyle = linestyle, linewidth=linewidth, clip_on = False)
 
-                elif ("fig6" in opt):
-                    if "_onlyslow_" not in do: ax01b.plot(p_v, err1_v_m, color=colgr[0], linestyle = linestyle, label=r"$\tau$ = 10 ms", linewidth=linewidth)
-                    if "_4thb" in do: ax01b.plot(p_v, err4_v_m, color=colgr[3], linestyle = linestyle, label=r"$\tau$ = 50 ms", linewidth=linewidth)
-                    if "_onlyslow_" not in do: ax01b.plot(p_v, err2_v_m, color=colgr[1], linestyle = linestyle, label=r"$\tau$ = 100 ms", linewidth=linewidth)
-                    ax01b.plot(p_v, err3_v_m, color=colgr[2], linestyle = linestyle, label=r"$\tau$ = 500 ms", linewidth=linewidth)
-
                 else:
                     if "_onlyslow_" not in do: ax01b.plot(p_v*normp, err1_v_m, color=colgr[0], linestyle = linestyle, label=r"$\tau$ = 10 ms", linewidth=linewidth, clip_on = False)
                     if "_4thb" in do: ax01b.plot(p_v*normp, err4_v_m, color=colgr[3], linestyle = linestyle, label=r"$\tau$ = 50 ms", linewidth=linewidth, clip_on = False)
@@ -4486,7 +3166,7 @@ for d, do in enumerate(do_vec):
 
                     else:
 
-                        if (("fig7" in opt) and ("_end_" not in do)) or ("fig3b" in opt):
+                        if ("fig3b" in opt):
                             adjust_spines(ax01b, ['left'], d_out = d_out, d_down = d_down)
                         else:
                             adjust_spines(ax01b, ['left','bottom'], d_out = d_out, d_down = d_down)
@@ -4496,12 +3176,8 @@ for d, do in enumerate(do_vec):
                     else:
                         ax01b.set_ylabel(r"goodness of fit $\mathsf{(R^{2})}$", labelpad=2)
 
-                    if ("fig6" in opt):
-                        ax01b.yaxis.set_ticks(array([0.5,0.6,0.7,0.8,0.9,1]))
-                        ax01b.set_yticklabels(('0.5','0.6','0.7','0.8','0.9','1'))
-                    else:
-                        ax01b.yaxis.set_ticks(array([0,0.2,0.4,0.6,0.8,1]))
-                        ax01b.set_yticklabels(('0','0.2','0.4','0.6','0.8','1'))
+                    ax01b.yaxis.set_ticks(array([0,0.2,0.4,0.6,0.8,1]))
+                    ax01b.set_yticklabels(('0','0.2','0.4','0.6','0.8','1'))
 
                 else:
 
@@ -4514,10 +3190,7 @@ for d, do in enumerate(do_vec):
                         adjust_spines(ax02b, ['bottom'], d_out = d_out, d_down = d_down)
 
                     else:
-                        if ("fig7" in opt) and ("_end_" not in do):
-                            adjust_spines(ax01b, [], d_out = d_out, d_down = d_down)
-                        else:
-                            adjust_spines(ax01b, ['bottom'], d_out = d_out, d_down = d_down)
+                        adjust_spines(ax01b, ['bottom'], d_out = d_out, d_down = d_down)
 
 
                 if ("_noly" not in do) or ("_fstd" in do):
@@ -4602,10 +3275,7 @@ for d, do in enumerate(do_vec):
                         ax_ticks.xaxis.set_ticks(array([0,0.01,0.02,0.03]))
                         ax_ticks.set_xticklabels(('0','0.01','0.02','0.03'))
 
-                if ("fig6" in opt):
-                    ax01b.axis(ymin=0.49, ymax=1.02)
-                else:
-                    ax01b.axis(ymin=-0.02, ymax=1.02)
+                ax01b.axis(ymin=-0.02, ymax=1.02)
 
                 if "fig2" in opt:
 
@@ -4681,19 +3351,6 @@ for d, do in enumerate(do_vec):
                         #for k, t in enumerate(txt):
                         #    t.set_color(color_v0[k])
 
-                if "fig7" in opt:
-                    #if "_if_" in do: ax01b.set_title(r"$\mathsf{\tau_{w}}$ = " + str(int(conntype[0]['tau2']*1e3)) + " ms")
-                    #if "_if2_" in do: ax01b.set_title(r"$\mathsf{\tau_{w}}$=" + str(int(conntype[0]['tau2']*1e3)) + "ms\n" + r"$\mathsf{\tau_{u}}$=" + str(int(conntype[1]['tau2']*1e3)) + "ms"):
-
-                    font1 = font0.copy()
-                    font1.set_family('sans-serif')
-                    font1.set_weight('bold')
-
-                    if "_if_" in do: ax01b.set_title(r"$\mathsf{\tau_{A}}$ = " + str(mt0) + " ms")
-                    if "_if2_" in do: ax01b.set_title(r"$\mathsf{\tau_{B}}$ = " + str(mt0) + " ms")
-                    if ("_ax2_" in do): ax01b.text(0.5, 1.25, r"$\mathsf{\tau_{w}}$ = " + str(int(conntype[0]['tau2']*1e3)) + " ms", transform=ax01b.transAxes, fontsize = 10, va='center', ha='center') # , bbox={"fc":"w", "ec":"k"}
-                    if ("_ax5_" in do) or ("_ax8_" in do): ax01b.text(0.5, 1.25, r"$\mathsf{\tau_{w}}$ = " + str(int(conntype[0]['tau2']*1e3)) + " ms, " + r"$\mathsf{\tau_{u}}$ = " + str(int(conntype[1]['tau2']*1e3)) + " ms", transform=ax01b.transAxes, fontsize = 10, va='center', ha='center')
-
 
                 filename="./figs/Pub/" + opt + "_" + str(prefix_plot)
                 if use_pc is False: plt.savefig(filename  + ".pdf", dpi = 300) # save it
@@ -4752,7 +3409,7 @@ for d, do in enumerate(do_vec):
             save_results(pickle_prefix,p,err, use_h5 = use_h5, data_dir=data_dir)
 
 
-if ((opt == "fig1") or ("fig4" in opt) or ("fig5" in opt) or ("fig6" in opt) or ("figRe6" in opt)):
+if ((opt == "fig1") or ("fig4" in opt) or ("fig5" in opt) or ("figRe6" in opt)):
 
     from pyPdf import PdfFileReader, PdfFileWriter
 
@@ -4781,10 +3438,6 @@ if ((opt == "fig1") or ("fig4" in opt) or ("fig5" in opt) or ("fig6" in opt) or 
     elif "fig4" in opt:
         pdfTwo = PdfFileReader(file("./figs/Inserts/cl02.pdf", "rb"))
         input1.mergeTransformedPage(pdfTwo.getPage(0),[1, 0, 0, 1, 0, 348])
-
-    elif "fig6" in opt:
-        pdfTwo = PdfFileReader(file("./figs/Inserts/cl07.pdf", "rb"))
-        input1.mergeTransformedPage(pdfTwo.getPage(0),[1, 0, 0, 1, 0, 270])
 
     elif "figRe6" in opt:
         pdfTwo = PdfFileReader(file("./figs/Inserts/cl05.pdf", "rb"))

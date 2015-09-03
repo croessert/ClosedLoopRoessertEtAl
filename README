@@ -1,5 +1,6 @@
 This contains the models, functions and resulting data as used in:
 
+Roessert C, Dean P, Porrill J. At the Edge of Chaos: How Cerebellar Granular Layer Network Dynamics Can Provide the Basis for Temporal Filters
 
 It is based on code used for Yamazaki T, Tanaka S (2005) Neural modeling of an internal clock. Neural Comput 17:1032-58
 
@@ -52,6 +53,7 @@ qsub -v J=Plots_Closedloop.py,O=fig4lruntest -pe ompigige 64 -l rmem=32G -l mem=
 qsub -v J=Plots_Closedloop.py,O=figRe6runtest -pe ompigige 64 -l rmem=32G -l mem=32G PBSinsigneo.sh
 
 
+A snapshot of the code can also be found on ModelDB: https://senselab.med.yale.edu/ModelDB/ShowModel.cshtml?model=168950
 
 
 ** Terms of use:
