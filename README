@@ -1,6 +1,6 @@
 This contains the models, functions and resulting data as used in:
 
-Roessert C, Dean P, Porrill J. At the Edge of Chaos: How Cerebellar Granular Layer Network Dynamics Can Provide the Basis for Temporal Filters
+Roessert C, Dean P, Porrill J (2015) At the Edge of Chaos: How Cerebellar Granular Layer Network Dynamics Can Provide the Basis for Temporal Filters. PLoS Comput Biol 11(10): e1004515. doi:10.1371/journal.pcbi.1004515
 
 It is based on code used for Yamazaki T, Tanaka S (2005) Neural modeling of an internal clock. Neural Comput 17:1032-58
 
