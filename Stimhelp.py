@@ -207,6 +207,10 @@ def syn_kernel(t, tau1 = 5, tau2 = 10):
     if tau1 == 0:
         
         G = exp(-t/tau2)    
+        
+    elif tau2 == 0:
+        
+        G = (t/tau1) * exp(1 - t/tau1)
 
     else:
         

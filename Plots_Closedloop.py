@@ -418,6 +418,14 @@ pi1 = '#F781BF'
 gr1 = '#999999'
 k1 = '#000000'
 
+c1 = '#15ACAC'
+c2 = '#36CDCD'
+m1 = '#D61A84'
+m2 = '#E63D9D'
+ok1 = '#FFBD1F'
+ok2 = '#FFC843'
+
+
 color_v = []
 
 if myid == 0:
@@ -1711,14 +1719,24 @@ for d, do in enumerate(do_vec):
 
 
     if "_4thb" in do:
-        tau1_basis = np.array([0,0,0,0])
-        tau2_basis = np.array([0.01,0.1,0.5,0.005])
-        colgr = [b1,g1,r1,o1]
+        tau1_basis = np.array([0.005,0.0126,0.0315,0.0792,0.1991,0.5])
+        tau2_basis = np.array([0,0,0,0,0,0])
+        colgr = [b1,g1,r1,c1,m1,]
         prefix = prefix + "_4thb"
         if "_colgr" in do:
             nc = str(do).split("_colgr")[1].split("_")[0]
             if nc == "light":
                 colgr = [b2,g2,r2,o2]
+                
+    if "_basalph" in do:
+        tau1_basis = np.array([0,0,0,0])
+        tau2_basis = np.array([0.01,0.1,0.5,0.005])
+        colgr = [b1,g1,r1,c1,m1,ok1]
+        prefix = prefix + "_basalph"
+        if "_colgr" in do:
+            nc = str(do).split("_basalph")[1].split("_")[0]
+            if nc == "light":
+                colgr = [b2,g2,r2,c2,m2,ok2]
 
     if "_1b" in do:
         tau1_basis = np.array([0])
